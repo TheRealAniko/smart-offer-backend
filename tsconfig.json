@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2017", // modernes JavaScript (ES6 = let, const, Arrow Functions)
+        "module": "commonjs", // nötig für Node.js / späteres Backend
+        "strict": true, // aktiviert strenge Typüberprüfung (empfohlen!)
+        "esModuleInterop": true, // erleichtert Importe von CommonJS-Modulen
+        "forceConsistentCasingInFileNames": true, // verhindert Probleme bei Groß-/Kleinschreibung
+        "skipLibCheck": true, // überspringt Typprüfung von Drittanbieter-Paketen
+        "outDir": "./dist" // wohin kompiliertes JS geschrieben wird
+    },
+    "include": ["src/**/*"]
+}
