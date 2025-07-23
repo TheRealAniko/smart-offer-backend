@@ -26,8 +26,11 @@ export type Position = {
 
 // Typ für das Angebot
 export type Offer = {
+    id: string; // Eindeutige ID des Angebots
     title: string;
     customer: Customer;
     positions: Position[];
-    date: Date;
+    createdAt: Date; // Datum der Angebotserstellung
+    validUntil?: Date; // Optionales Ablaufdatum des Angebots
+    updatedAt?: Date; // Optionales Datum der letzten Aktualisierung
 };
