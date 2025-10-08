@@ -11,5 +11,8 @@
   "description": "",
   "devDependencies": {
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@smartoffer/types": "file:../SMART-OFFER-TYPES"
   }
 }
