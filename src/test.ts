@@ -1,5 +1,5 @@
 import { calcTotal } from "./utils/calc";
-import { Offer } from "./data/offer";
+import type { Email, Offer } from "@smartoffer/types";
 
 // Beispielangebot erstellen
 const testOffer: Offer = {
@@ -7,7 +7,7 @@ const testOffer: Offer = {
     title: "Testangebot für Treppengeländer",
     customer: {
         name: "Schlosserei Muster",
-        email: "kontakt@schlosserei-muster.de",
+        email: "kontakt@schlosserei-muster.de" as Email,
         address: "Musterstraße 1, 12345 Musterstadt",
         phone: "01234 567890",
         contactPerson: "Herr Stahl",
