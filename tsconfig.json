@@ -3,7 +3,9 @@
         "target": "es2020", // Ziel-JavaScript-Version
         "lib": ["ES2020", "DOM"], // welche Standard-Bibliotheken verwendet werden
         "module": "commonjs", // nötig für Node.js / späteres Backend
+        "moduleResolution": "Node", // wie Module aufgelöst werden
         "strict": true, // aktiviert strenge Typüberprüfung (empfohlen!)
+        "rootDir": "src", // Quellcode-Verzeichnis
         "esModuleInterop": true, // erleichtert Importe von CommonJS-Modulen
         "forceConsistentCasingInFileNames": true, // verhindert Probleme bei Groß-/Kleinschreibung
         "skipLibCheck": true, // überspringt Typprüfung von Drittanbieter-Paketen
