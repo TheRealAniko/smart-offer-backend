@@ -21,7 +21,7 @@ const testOffer: Offer = {
         },
         { label: "Montage", quantity: 1, unit: "h", unitPrice: 250 },
     ],
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
 };
 
 const total = calcTotal(testOffer);
