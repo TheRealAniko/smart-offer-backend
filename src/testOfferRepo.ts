@@ -8,6 +8,7 @@ async function testOfferRepo() {
     const newOffer = await create({
         title: "Luxury Cat Tower Deluxe",
         customer: {
+            id: "customer-123",
             name: "The Fancy Feline Lounge",
             email: "contact@fancylounge.com" as Email,
             address: "Cat Street 42, Purr City",

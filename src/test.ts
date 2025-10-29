@@ -6,11 +6,13 @@ const testOffer: Offer = {
     id: "test-001",
     title: "Testangebot für Treppengeländer",
     customer: {
+        id: "customer-001",
         name: "Schlosserei Muster",
         email: "kontakt@schlosserei-muster.de" as Email,
         address: "Musterstraße 1, 12345 Musterstadt",
         phone: "01234 567890",
         contactPerson: "Herr Stahl",
+        createdAt: new Date().toISOString(),
     },
     positions: [
         {
