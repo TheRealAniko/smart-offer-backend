@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import offerRoutes from "./routes/offerRoutes";
 
 // 1. Load environment variables from .env file
 dotenv.config();
@@ -9,6 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/offers", offerRoutes);
 
 // 3. Port from environment variables or default to 4000
 const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
