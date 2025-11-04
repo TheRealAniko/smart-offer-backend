@@ -27,7 +27,7 @@ async function testOfferRepo() {
                 unitPrice: 129.99,
             },
         ],
-        validUntil: new Date(),
+        validUntil: new Date().toISOString(),
         footer: "Meow you later! 🐾",
     });
     console.log("Created offer:", newOffer);
