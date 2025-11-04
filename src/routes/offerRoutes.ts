@@ -1,6 +1,7 @@
 import { Router } from "express";
 import * as offerRepo from "../repos/offerRepo";
 import { Offer } from "@smartoffer/types";
+import { sendError, sendSuccess } from "../utils/apiResponse";
 
 type OfferInput = Omit<Offer, "id" | "createdAt" | "updatedAt" | "totalPrice">;
 
@@ -10,9 +11,9 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         const offers: Offer[] = await offerRepo.getAll();
-        res.json(offers);
+        sendSuccess(res, offers);
     } catch (error) {
-        res.status(500).json({ message: "Error retrieving offers" });
+        sendError(res, "Error retrieving offers", 500, error);
     }
 });
 
@@ -21,11 +22,11 @@ router.get("/:id", async (req, res) => {
     try {
         const offer: Offer | undefined = await offerRepo.getById(req.params.id);
         if (!offer) {
-            return res.status(404).json({ message: "Offer not found" });
+            return sendError(res, "Offer not found", 404);
         }
-        res.json(offer);
+        sendSuccess(res, offer);
     } catch (error) {
-        res.status(500).json({ message: "Error retrieving offer" });
+        sendError(res, "Error retrieving offer", 500, error);
     }
 });
 
@@ -34,14 +35,17 @@ router.post("/", async (req, res) => {
     try {
         const body = req.body as OfferInput;
 
+        // Einfache Validierung
         if (!body.title) {
-            return res.status(400).json({ message: "Title is required" });
+            return sendError(res, "Title is required", 400);
         }
 
         const newOffer = await offerRepo.create(body);
-        res.status(201).json(newOffer);
+
+        // Erfolgreiche Erstellung
+        sendSuccess(res, newOffer, 201);
     } catch (error) {
-        res.status(500).json({ message: "Error creating offer" });
+        sendError(res, "Error creating offer", 500, error);
     }
 });
 
@@ -52,7 +56,7 @@ router.put("/:id", async (req, res) => {
         const body = req.body as Partial<OfferInput>; // Teil-Updates erlauben
 
         if (!id) {
-            return res.status(400).json({ message: "ID is required" });
+            return sendError(res, "ID is required", 400);
         }
 
         const updated = await offerRepo.update(id, {
@@ -61,12 +65,12 @@ router.put("/:id", async (req, res) => {
         });
 
         if (!updated) {
-            return res.status(404).json({ message: "Offer not found" });
+            return sendError(res, "Offer not found", 404);
         }
 
-        res.json(updated);
+        sendSuccess(res, updated);
     } catch (error) {
-        res.status(500).json({ message: "Error updating offer" });
+        sendError(res, "Error updating offer", 500, error);
     }
 });
 
@@ -75,17 +79,17 @@ router.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
         if (!id) {
-            return res.status(400).json({ message: "ID is required" });
+            return sendError(res, "ID is required", 400);
         }
         const success = await offerRepo.remove(id);
 
         if (!success) {
-            return res.status(404).json({ message: "Offer not found" });
+            return sendError(res, "Offer not found", 404);
         }
 
-        res.json({ message: "Offer deleted successfully" });
+        sendSuccess(res, { message: "Offer deleted successfully" });
     } catch (error) {
-        res.status(500).json({ message: "Error deleting offer" });
+        sendError(res, "Error deleting offer", 500, error);
     }
 });
 
